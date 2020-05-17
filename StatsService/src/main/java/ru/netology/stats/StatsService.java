@@ -18,7 +18,7 @@ public class StatsService {
 
     public long getMaxAmount(long[] sales) {
         long sum = sales[0];;
-        long maxMonth = 0;
+        long maxMonth = 1;
         for (int i = 0; i < sales.length; i++ ) {
             if (sum <= sales[i]) {
                 sum = sales[i];
@@ -30,7 +30,7 @@ public class StatsService {
 
     public long getMinAmount(long[] sales) {
         long sum = sales[0];;
-        long minMonth = 0;
+        long minMonth = 1;
         for (int i = 0; i < sales.length; i++ ) {
             if (sum >= sales[i]) {
                 sum = sales[i];
@@ -41,12 +41,11 @@ public class StatsService {
     }
 
     public long getBelowAverage(long[] sales) {
-        long sum = getAverageAmount(sales);
+        long average = getAverageAmount(sales);
         long belowAverage = 0;
-        for (int i = 0; i < sales.length; i++ ) {
-            if (sum < sales[i]) {
-                sum = sales[i];
-                belowAverage = i;
+        for (long sum : sales) {
+            if (sum < average) {
+                belowAverage++;
             }
         }
         return belowAverage;
